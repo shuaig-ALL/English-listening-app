@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-accent: #0066ff;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@keyframes wave-bar {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.waveform-bar {
+  animation: wave-bar 1.2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.waveform-accent {
+  animation: wave-bar 1.2s ease-in-out infinite, pulse-glow 1.2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
