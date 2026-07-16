@@ -1,30 +1,35 @@
 import { Microphone, Headphones, User, Info } from "@phosphor-icons/react/dist/ssr";
 import { Waveform } from "@/components/Waveform";
+import Link from "next/link";
 
 const navCards = [
   {
     title: "听力练习",
-    subtitle: "Listen & Practice",
+    description: "精选英语听力材料，逐句精听提升理解能力",
     icon: Headphones,
     href: "/listening",
+    label: "进入练习",
   },
   {
     title: "口语练习",
-    subtitle: "Speak & Improve",
+    description: "AI 语音评测，实时反馈发音准确度",
     icon: Microphone,
     href: "/speaking",
+    label: "进入练习",
   },
   {
     title: "个人中心",
-    subtitle: "Personal Center",
+    description: "查看学习记录、收藏内容和学习数据",
     icon: User,
     href: "/profile",
+    label: "进入练习",
   },
   {
     title: "关于",
-    subtitle: "About",
+    description: "了解项目背景、技术栈与使用说明",
     icon: Info,
     href: "/about",
+    label: "查看",
   },
 ];
 
@@ -45,27 +50,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex flex-col items-center px-6 pb-32">
-        <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <section className="px-6 pb-32">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-6">
           {navCards.map((card) => (
-            <a
+            <div
               key={card.href}
-              href={card.href}
-              className="group flex flex-col items-center gap-4 rounded-2xl border border-zinc-200 bg-white px-8 py-10 transition-colors hover:border-accent hover:bg-zinc-50/50"
+              className="flex flex-col items-center w-[260px] rounded-2xl border border-zinc-200 bg-white px-6 py-10"
             >
-              <card.icon
-                weight="duotone"
-                className="w-9 h-9 text-zinc-300 transition-colors group-hover:text-accent"
-              />
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-xl font-semibold text-zinc-900 tracking-tight">
+              <div className="flex flex-col items-center gap-4 flex-1">
+                <card.icon
+                  weight="duotone"
+                  className="w-9 h-9 text-zinc-300"
+                />
+                <h3 className="text-lg font-semibold text-zinc-900 tracking-tight">
                   {card.title}
-                </span>
-                <span className="text-sm text-zinc-400 font-mono tracking-wide">
-                  {card.subtitle}
-                </span>
+                </h3>
+                <p className="text-sm text-zinc-400 text-center leading-relaxed">
+                  {card.description}
+                </p>
               </div>
-            </a>
+              <Link
+                href={card.href}
+                className="mt-6 inline-flex items-center justify-center h-10 rounded-full bg-zinc-900 px-6 text-sm font-bold text-white transition-colors hover:bg-accent"
+              >
+                {card.label}
+              </Link>
+            </div>
           ))}
         </div>
       </section>
