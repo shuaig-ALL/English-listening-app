@@ -23,13 +23,16 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-bold tracking-tight transition-colors ${
+              className={`relative text-sm font-bold tracking-tight transition-colors ${
                 isActive
                   ? "text-accent"
-                  : "text-zinc-900 hover:text-zinc-500"
+                  : "text-zinc-400 hover:text-zinc-700"
               }`}
             >
               {link.label}
+              {isActive && (
+                <span className="absolute -bottom-[19px] left-0 right-0 h-0.5 bg-accent rounded-full" />
+              )}
             </Link>
           );
         })}
