@@ -1,5 +1,6 @@
 import { Microphone, Headphones, User, Info } from "@phosphor-icons/react/dist/ssr";
 import { Waveform } from "@/components/Waveform";
+import { ThreeGlobeBackground } from "@/components/ThreeGlobeBackground";
 import Link from "next/link";
 
 const navCards = [
@@ -36,6 +37,7 @@ const navCards = [
 export default function Home() {
   return (
     <div className="flex flex-col flex-1">
+      <ThreeGlobeBackground />
       <section className="flex flex-col items-center justify-center min-h-[90dvh] px-6 pt-16 pb-24">
         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-center text-zinc-900 leading-none">
           英语听说练习

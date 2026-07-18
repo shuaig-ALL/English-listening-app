@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  background-color: transparent;
+}
+
 @theme inline {
   --color-background: #ffffff;
   --color-foreground: #171717;
