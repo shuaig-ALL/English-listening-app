@@ -48,13 +48,20 @@ export function Button({
   disabled,
   children,
   className = "",
+  onClick,
   ...props
 }: ButtonProps) {
   const isDisabled = disabled || loading;
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (isDisabled) return;
+    onClick?.(e);
+  };
+
   return (
     <button
       disabled={isDisabled}
+      onClick={handleClick}
       className={`inline-flex items-center justify-center font-bold tracking-tight transition-colors ${variantStyles[variant]} ${sizeStyles[size]} ${isDisabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`}
       {...props}
     >

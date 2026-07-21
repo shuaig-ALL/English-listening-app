@@ -16,26 +16,19 @@ export function Modal({ open, onClose, title, children, footer }: ModalProps) {
   useEffect(() => {
     if (!open) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open, onClose]);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
 
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = prev;
+      document.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, onClose]);
 
   if (!open) return null;
 
@@ -45,7 +38,10 @@ export function Modal({ open, onClose, title, children, footer }: ModalProps) {
         className="absolute inset-0 bg-black/50"
         onClick={onClose}
       />
-      <div className="relative z-10 w-full max-w-md mx-4 rounded-2xl bg-white shadow-xl">
+      <div
+        className="relative z-10 w-full max-w-md mx-4 rounded-2xl bg-white shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex items-center justify-between px-6 pt-6 pb-4">
           {title && (
             <h2 className="text-lg font-bold text-zinc-900 tracking-tight">
